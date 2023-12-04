@@ -1,0 +1,31 @@
+version: '3.7'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: database
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: my_db
+      MYSQL_USER: volodymyr
+      MYSQL_PASSWORD: 12345
+    ports:
+      - "6033:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpMyAdmin
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+      PMA_USER: volodymyr
+      PMA_PASSWORD: 12345
+    restart: always
+    ports:
+      - 8081:80
+volumes:
+  dbdata:
