@@ -5,6 +5,7 @@ import helpers
 
 app = Flask(__name__)
 
+
 @app.route("/users")
 def users():
     cursor = init_sql_connection()
@@ -12,8 +13,9 @@ def users():
     result = helpers.db_users_to_json(cursor.fetchall())
     return result, 200
 
+
 @app.route("/users/<id>")
-def users_by_id(id = 0):
+def users_by_id(id=0):
     try:
         cursor = init_sql_connection()
         cursor.execute(dbQueries.get_user_by_id(id))
@@ -23,16 +25,22 @@ def users_by_id(id = 0):
         else:
             return 'User not found', 404
     except Exception as e:
-        print('Exception - ', e)
+        print('Error - ', e)
         return e, 400
+
 
 @app.route("/users", methods=['POST'])
 def create_user():
-    cursor = init_sql_connection()
-    user_name = request.get_json()['user_name']
-    sql_query = dbQueries.create_user(user_name)
-    cursor.execute(sql_query)
-    return 'ok', 200
+    try:
+        cursor = init_sql_connection()
+        user_name = request.get_json()['user_name']
+        create_sql_query = dbQueries.create_user(user_name)
+        cursor.execute(create_sql_query)
+        cursor.execute(dbQueries.last_added_user())
+        return helpers.db_users_to_json(cursor.fetchall()), 200
+    except:
+        return 'Something went wrong', 500
+
 
 @app.route("/users/<id>", methods=['PUT'])
 def update_user(id):
@@ -41,10 +49,6 @@ def update_user(id):
         cursor.execute(dbQueries.get_user_by_id(id))
         result = cursor.fetchall()
         user_new_name = request.get_json()['user_name']
-        print(
-            'user_new_name',
-            result
-        )
         if len(result) != 0 and len(user_new_name) > 0:
             cursor.execute(dbQueries.update_user_by_id(id, user_new_name))
             cursor.fetchall()
@@ -52,9 +56,10 @@ def update_user(id):
             new_user_bd_result = cursor.fetchall()
             return helpers.db_users_to_json(new_user_bd_result), 200
         else:
-            return 'User not found or name empty', 404
+            return 'User not found or Name empty', 404
     except:
         return 'Something went wrong', 500
+
 
 @app.route("/users/<id>", methods=['DELETE'])
 def delete_user(id):

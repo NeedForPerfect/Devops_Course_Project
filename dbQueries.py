@@ -6,6 +6,10 @@ def get_all_users():
 
 def get_user_by_id(id):
     return f"SELECT id, user_name FROM `{table_name}` WHERE id = {id};"
+
+def last_added_user():
+    return f"SELECT id, user_name FROM `{table_name}` WHERE id = LAST_INSERT_ID();"
+
 def create_user(name):
     return f"INSERT INTO {table_name} (user_name) VALUES ('{name}');"
 
