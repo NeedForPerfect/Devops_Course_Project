@@ -1,0 +1,23 @@
+.users-component {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #0f5132;
+  }
+}
+
+.user-name {
+  margin-top: 15px;
+}
+
+
+.user-data {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.user-edit-button {
+    margin-right: 15px;
+}

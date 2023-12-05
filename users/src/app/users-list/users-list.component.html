@@ -1,0 +1,21 @@
+<div class="users-component container">
+    <div class="users-component__header mb-2">
+      <h2 class="text-muted">Manage users</h2>
+      <a class="btn btn-lg btn-success" id="create-user-btn" href="#" [routerLink]="'create'" role="button">Create user</a>
+    </div>
+
+    <div class="card users-component__user alert alert-success" [id]="user.id" *ngFor="let user of users">
+      <h3 [id]="'user-name-'+user.id" class="user-name">{{ user.user_name }}</h3>
+      <div class="user-data">
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="fw-bolder">Created at: <span [id]="'user-created-date-'+user.id" class="fst-italic">{{ user.created_at }}</span></div>
+        </div>
+        <div>
+
+          <button [id]="'edit-btn-'+user.id" [routerLink]="['edit-user', user.id]" type="button" class="user-edit-button btn btn-primary">Edit</button>
+          <button [id]="'remove-btn-'+user.id" type="button" class="btn btn-danger" (click)="removeUser(user.id)">Remove</button>
+        </div>
+      </div>
+    </div>
+
+</div>
