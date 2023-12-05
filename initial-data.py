@@ -1,4 +1,4 @@
-from sqlDriver import init_sql_connection
+from db_connection import init_sql_connection, close_sql_connection
 
 schema_name = "my_db"
 table_name = "users"
@@ -27,4 +27,4 @@ for user_name in user_names:
     add_user(user_name)
 
 
-cursor.close()
+close_sql_connection()

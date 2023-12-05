@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from sqlDriver import init_sql_connection, close_sql_connection
+from db_connection import init_sql_connection, close_sql_connection
 import queries
 import helpers
 
