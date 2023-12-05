@@ -1,10 +1,11 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from db_connection import init_sql_connection, close_sql_connection
 import queries
 import helpers
 
 app = Flask(__name__)
-
+CORS(app, origins="*")
 
 @app.route("/users")
 def users():
