@@ -6,7 +6,8 @@ def db_users_to_json(rows):
     for row in rows:
         user_data = {
             'id': row[0],
-            'user_name': row[1]
+            'user_name': row[1],
+            'created_at': row[2].isoformat()
         }
         json_result.append(user_data)
     if len(json_result) == 1:
