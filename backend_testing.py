@@ -4,9 +4,10 @@ import json
 import helpers
 import queries
 
-# Creates DB with initial data
+# RESET DATA_BASE
 import initial_data
 
+# CREATE USER
 users_url = "http://127.0.0.1:3000/users"
 
 payload = {"user_name": "Ana Kirstein"}
@@ -17,21 +18,23 @@ status_code = create_response.status_code
 created_user_result = create_response.text
 created_user = json.loads(created_user_result)
 
-print(f"User {created_user["user_name"]} created successfully")
+if (create_response.status_code == 200):
+    print(f"User {created_user["user_name"]} created successfully")
+else:
+    raise Exception("User hasn't created successfully")
 
+# TRY TO GET NEW CREATED USER FROM API
 get_user_by_id_url = f"{users_url}/{created_user["id"]}"
 get_user_response = requests.request(method="GET", url=get_user_by_id_url)
 received_user_by_id = json.loads(get_user_response.text)
-
-
 
 if (created_user["id"] == received_user_by_id["id"] and
         created_user["user_name"] == received_user_by_id["user_name"]):
     print("New created user - ", received_user_by_id["user_name"], "returned from API successfully.")
 else:
-    print("Created user doesn't exist by create response ID")
+    raise Exception("Created user doesn't exist by create response ID")
 
-
+# CHECK CREATED USER EXISTS IN DATA-BASE
 cursor = init_sql_connection()
 cursor.execute(queries.get_user_by_id(created_user["id"]))
 result = cursor.fetchall()
@@ -42,11 +45,5 @@ if (user_from_data_base["id"] == created_user["id"] and
         user_from_data_base["user_name"] == created_user["user_name"]):
     print("New created user - ", created_user["user_name"], "exists in data-base.")
 else:
-    print("New created user for some reasons doesn't exist in data-base")
-
-
-
-
-
-
+    raise Exception("New created user for some reasons doesn't exist in data-base")
 
