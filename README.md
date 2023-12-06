@@ -5,7 +5,7 @@ Front-end: Angular
 Tests: Python + `requests`/Selenium
 
 
-RUN DATA-BASE `docker compose up`
+RUN DATA-BASE `docker compose up -d`
 
 RUN THE API  `python server.py`
 
