@@ -2,14 +2,15 @@ import {Component, OnInit} from '@angular/core';
 import {NgIf} from "@angular/common";
 import {FormControl, ReactiveFormsModule, Validators} from "@angular/forms";
 import {UsersApiService} from "../users-api.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-edit-user',
   standalone: true,
     imports: [
         NgIf,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        RouterLink
     ],
   templateUrl: './edit-user.component.html',
   styleUrl: './edit-user.component.scss'
