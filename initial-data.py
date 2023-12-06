@@ -6,6 +6,10 @@ user_names = ["Ritta", "Rebeca", "Elizabeth", "David", "Shmuel", "Abraham"]
 
 cursor = init_sql_connection()
 
+def clear_database():
+    statement_to_execute = f"DROP TABLE IF EXISTS {table_name}"
+    cursor.execute(statement_to_execute)
+
 def add_table(table_name):
     statement_to_execute = (f"CREATE TABLE `{table_name}`"
                             f"("
@@ -21,10 +25,19 @@ def add_user(user_name):
     cursor.execute(statement_to_execute)
 
 
+
+clear_database()
+
+print('Database cleared')
+
 add_table(table_name)
+
+print(f"Table {table_name} creates")
 
 for user_name in user_names:
     add_user(user_name)
+
+print("Users created")
 
 
 close_sql_connection()
