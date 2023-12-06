@@ -3,6 +3,7 @@ from flask_cors import CORS
 from db_connection import init_sql_connection, close_sql_connection
 import queries
 import helpers
+import configs
 
 app = Flask(__name__)
 CORS(app, origins="*")
@@ -32,7 +33,6 @@ def users_by_id(id=0):
 
 @app.route("/users", methods=['POST'])
 def create_user():
-    print('GOT JSON - ', request.get_json())
     try:
         cursor = init_sql_connection()
         user_name = request.get_json()['user_name']
@@ -46,7 +46,6 @@ def create_user():
 
 @app.route("/users/<id>", methods=['PUT'])
 def update_user(id):
-    print('PUT PTU - ', request.get_json())
     try:
         cursor = init_sql_connection()
         cursor.execute(queries.get_user_by_id(id))
@@ -85,4 +84,4 @@ def after_request(response):
     return response
 
 
-app.run(host='127.0.0.1', debug=True, port=3000)
+app.run(host=configs.API_HOST, debug=True, port=configs.API_PORT)

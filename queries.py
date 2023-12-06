@@ -1,5 +1,6 @@
-schema_name = "my_db"
-table_name = "users"
+import configs
+
+table_name = configs.DB_TABLE_NAME
 
 def get_all_users():
     return f"SELECT * FROM `{table_name}`;"

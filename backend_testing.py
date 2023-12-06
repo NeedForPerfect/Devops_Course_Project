@@ -3,12 +3,13 @@ from db_connection import init_sql_connection, close_sql_connection
 import json
 import helpers
 import queries
+import configs
 
 # RESET DATA_BASE
 import initial_data
 
 # CREATE USER
-users_url = "http://127.0.0.1:3000/users"
+users_url = f"http://{configs.API_HOST}:{configs.API_PORT}/users"
 
 payload = {"user_name": "Ana Kirstein"}
 headers = {"Content-Type": "application/json"}

@@ -6,12 +6,13 @@ import queries
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import configs
 
 # RESET DATA_BASE
 import initial_data
 
 # CREATE USER
-users_url = "http://127.0.0.1:3000/users"
+users_url = f"http://{configs.API_HOST}:{configs.API_PORT}/users"
 
 payload = {"user_name": "Ana Kirstein"}
 headers = {"Content-Type": "application/json"}
@@ -56,7 +57,7 @@ chromeDriver = webdriver.Chrome()
 
 print(f"http://localhost:4200/users/{created_user["id"]}")
 
-chromeDriver.get(f"http://localhost:4200/edit-user/{created_user["id"]}")
+chromeDriver.get(f"{configs.FRONT_END_URL}/edit-user/{created_user["id"]}")
 chromeDriver.implicitly_wait(1)
 
 user_name_from_UI = chromeDriver.find_element(By.ID, value="edit-user-input").get_attribute("value")

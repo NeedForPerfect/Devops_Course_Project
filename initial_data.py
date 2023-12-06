@@ -1,7 +1,8 @@
 from db_connection import init_sql_connection, close_sql_connection
+import configs
 
-schema_name = "my_db"
-table_name = "users"
+schema_name = configs.DB_SCHEMA_NAME
+table_name = configs.DB_TABLE_NAME
 user_names = ["Ritta", "Rebeca", "Elizabeth", "David", "Shmuel", "Abraham"]
 
 cursor = init_sql_connection()

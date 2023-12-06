@@ -1,9 +1,10 @@
 import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+import configs
 
 chromeDriver = webdriver.Chrome()
-chromeDriver.get('http://localhost:4200')
+chromeDriver.get(configs.FRONT_END_URL)
 chromeDriver.implicitly_wait(1)
 
 
