@@ -3,7 +3,7 @@ import configs
 
 schema_name = configs.DB_SCHEMA_NAME
 table_name = configs.DB_TABLE_NAME
-user_names = ["Ritta", "Rebeca", "Elizabeth", "David", "Shmuel", "Abraham"]
+user_names = ["Ritta Steinberg", "Rebeca Kirstein", "Elizabeth Benowitz", "David Klein", "Shmuel Feldman", "Abraham Goldman"]
 
 cursor = init_sql_connection()
 
