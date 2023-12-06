@@ -4,8 +4,8 @@
       <div class="mt-3 mb-3">
         <h3 class="text-success"><label for="edit-user-input" class="form-label">Enter user name</label></h3>
         <input id="edit-user-input" [formControl]="userNameControl" type="email" class="form-control" placeholder="Mikael">
-        <a id="edit-user-button" class="btn btn-lg btn-success" *ngIf="userNameControl.valid" href="#" (click)="editUser()" role="button">Edit user</a>
-        <button id="edit-user-back-btn" type="button" class="btn btn-danger" [routerLink]="'users'">Back</button>
+        <a id="edit-user-button" class="btn btn-success edit-user-edit-button" *ngIf="userNameControl.valid" href="#" (click)="editUser()" role="button">Edit user</a>
+        <button id="edit-user-back-btn" type="button" class="btn btn-danger" [routerLink]="'/'">Back</button>
       </div>
     </div>
   </div>
