@@ -24,7 +24,13 @@ export class UsersListComponent implements  OnInit  {
   }
   getUsers(): void {
     this.usersApi.getUsers()
-        .pipe(map(res => res.map((user: any) => ({...user, created_at: new Date(user.created_at).toDateString() }))))
+        .pipe(map(res => res.map(
+          (user: any) => (
+            {...user,
+              created_at: `${new Date(user.created_at).toDateString()} at
+               ${new Date(user.created_at).toISOString().split('T')[1].slice(0, 8)}`
+            })
+        )))
         .subscribe(res => this.users = res);
   }
   removeUser(id: number): void {
