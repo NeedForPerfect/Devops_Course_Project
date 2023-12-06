@@ -73,9 +73,9 @@ def delete_user(id):
             cursor.execute(queries.delete_user_by_id(id))
             return id, 200
         else:
-            return 'User not found', 404
+            return 'User not found.', 404
     except:
-        return 'Something went wrong', 500
+        return 'Something went wrong.', 500
 
 
 @app.after_request
