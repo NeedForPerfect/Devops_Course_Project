@@ -32,6 +32,7 @@ def users_by_id(id=0):
 
 @app.route("/users", methods=['POST'])
 def create_user():
+    print('GOT JSON - ', request.get_json())
     try:
         cursor = init_sql_connection()
         user_name = request.get_json()['user_name']
@@ -45,6 +46,7 @@ def create_user():
 
 @app.route("/users/<id>", methods=['PUT'])
 def update_user(id):
+    print('PUT PTU - ', request.get_json())
     try:
         cursor = init_sql_connection()
         cursor.execute(queries.get_user_by_id(id))

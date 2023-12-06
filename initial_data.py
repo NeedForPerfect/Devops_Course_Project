@@ -32,12 +32,12 @@ print('Database cleared')
 
 add_table(table_name)
 
-print(f"Table {table_name} creates")
+print(f"Table \"{table_name}\" creates")
 
 for user_name in user_names:
     add_user(user_name)
 
-print("Users created")
+print(len(user_names), " - Users created")
 
 
 close_sql_connection()
