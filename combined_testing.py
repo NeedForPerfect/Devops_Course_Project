@@ -55,7 +55,7 @@ else:
 # CHECK USER SHOWN IN UI
 chromeDriver = webdriver.Chrome()
 
-print(f"http://localhost:4200/users/{created_user["id"]}")
+print(f"http://{configs.FRONT_END_URL}/users/{created_user["id"]}")
 
 chromeDriver.get(f"{configs.FRONT_END_URL}/edit-user/{created_user["id"]}")
 chromeDriver.implicitly_wait(1)
