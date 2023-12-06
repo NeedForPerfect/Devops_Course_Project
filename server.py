@@ -81,6 +81,7 @@ def delete_user(id):
 @app.after_request
 def after_request(response):
     close_sql_connection()
+    response.headers['Content-Type'] = 'application/json'
     return response
 
 
