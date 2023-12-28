@@ -14,5 +14,5 @@ RUN FRON-END
   `ng serve`
 
 RUN TESTS
-  `python frontend_testing.py` `python backend_testing.py` `python combined_testing.py`
+  `python frontend_testing.py` `python backend_testing.py` `python combined_testing.py`.
 
