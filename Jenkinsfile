@@ -8,6 +8,7 @@ pipeline {
    steps {
     script {
       sh 'echo ${MY_NAME} >> text.txt'
+      sh 'pwd'
     }
    }
  }
