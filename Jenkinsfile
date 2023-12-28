@@ -8,7 +8,6 @@ pipeline {
    steps {
     script {
       sh 'echo ${MY_NAME} >> text.txt'
-      sh 'pwd'
     }
    }
  }
@@ -16,6 +15,12 @@ pipeline {
   stage('Show file content') {
     steps {
         sh 'cat text.txt'
+    }
+  }
+
+   stage('Show path') {
+    steps {
+        sh 'pwd'
     }
   }
   
